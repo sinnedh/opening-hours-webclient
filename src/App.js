@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
 import gql from 'graphql-tag';
-import { Container, Menu } from 'semantic-ui-react'
+import { Container, Menu } from 'semantic-ui-react';
 import { graphql } from 'react-apollo';
 import RegularHoursOverview from './components/RegularHoursOverview';
 import ExceptionalHoursOverview from './components/ExceptionalHoursOverview';
