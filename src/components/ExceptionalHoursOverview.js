@@ -7,11 +7,12 @@ import ExceptionalHoursDelete from './ExceptionalHoursDelete';
 const ExceptionalHoursOverview = ({ exceptionalHours }) => (
   <React.Fragment>
     <h2>Exceptional hours</h2>
+
     <ExceptionalHoursCreate />
 
     <Divider />
     { exceptionalHours.map((day, key) =>
-      <React.Fragment>
+      <React.Fragment key={key}>
         <Grid>
           <Grid.Column width={4}>
             <strong>{ format(day.open, 'YYYY-MM-DD') }</strong>
@@ -23,7 +24,7 @@ const ExceptionalHoursOverview = ({ exceptionalHours }) => (
             }
           </Grid.Column>
           <Grid.Column width={4}>
-            { day.comment && ' ' + day.comment }
+            { day.comment }
           </Grid.Column>
           <Grid.Column width={2}>
             <ExceptionalHoursDelete id={day.id} />
