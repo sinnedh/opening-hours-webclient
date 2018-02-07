@@ -1,5 +1,6 @@
 import React from 'react';
 import RegularHoursOverview from './RegularHoursOverview'
+import ExceptionalHoursOverview from './ExceptionalHoursOverview'
 
 const Overview = ({ name, regularHours, exceptionalHours }) => (
     <React.Fragment>
@@ -8,13 +9,7 @@ const Overview = ({ name, regularHours, exceptionalHours }) => (
         <RegularHoursOverview regularHours={regularHours} />
 
         <h2>Exceptional hours</h2>
-        <ul>
-        { exceptionalHours.map((item, key) =>
-            <li key={key}>
-                {item.open} - {item.close}
-            </li>
-        )}
-        </ul>
+        <ExceptionalHoursOverview exceptionalHours={exceptionalHours} />
     </React.Fragment>
 )
 
