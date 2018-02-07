@@ -1,15 +1,14 @@
 import React from 'react';
-import gql from 'graphql-tag';
 import { parse } from 'date-fns';
 import { graphql } from 'react-apollo';
 import { Checkbox, Input, Form } from 'semantic-ui-react';
 import { fetchExceptionalHoursQuery } from '../queries';
+import { createExceptionalHoursMutation } from '../mutations';
 
 class ExceptionalHoursCreate extends React.Component {
   state = { date: '2018-02-07', isClosed: false, openAt: '10:00', closeAt: '19:00', comment: '' }
 
   handleSubmit = () => {
-
     this.props.mutate(
       {
         variables: {
@@ -54,19 +53,5 @@ class ExceptionalHoursCreate extends React.Component {
     );
   }
 }
-
-const createExceptionalHoursMutation = gql`
-  mutation createExceptionalHours(
-    $venueId: ID!,
-    $open: DateTime!,
-    $close: DateTime!,
-    $comment: String
-    $isClosed: Boolean
-  ) {
-    createExceptionalHours(venueId: $venueId, open: $open, close: $close, comment: $comment, isClosed: $isClosed) {
-      id
-    }
-  }
-`;
 
 export default graphql(createExceptionalHoursMutation)(ExceptionalHoursCreate);

@@ -1,11 +1,10 @@
 import React from 'react';
-import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 import { Button } from 'semantic-ui-react';
 import { fetchExceptionalHoursQuery } from '../queries';
+import { deleteExceptionalHoursMutation } from '../mutations';
 
 class ExceptionalHoursDelete extends React.Component {
-
   handleClick = () => {
     this.props.mutate(
       {
@@ -31,12 +30,5 @@ class ExceptionalHoursDelete extends React.Component {
   }
 }
 
-const deleteExceptionalHoursMutation = gql`
-  mutation deleteExceptionalHours($id: ID!) {
-    deleteExceptionalHours(id: $id) {
-      id
-    }
-  }
-`;
 
 export default graphql(deleteExceptionalHoursMutation)(ExceptionalHoursDelete);
