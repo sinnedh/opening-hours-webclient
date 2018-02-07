@@ -1,6 +1,7 @@
 import React from 'react';
 import { format } from 'date-fns';
 import ExceptionalHoursCreate from './ExceptionalHoursCreate';
+import ExceptionalHoursDelete from './ExceptionalHoursDelete';
 
 const ExceptionalHoursOverview = ({ exceptionalHours }) => (
   <React.Fragment>
@@ -9,6 +10,7 @@ const ExceptionalHoursOverview = ({ exceptionalHours }) => (
     <ul>
       { exceptionalHours.map((day, key) =>
         <li key={key}>
+          <ExceptionalHoursDelete id={day.id} />
           { format(day.open, 'YYYY-MM-DD') + ': ' }
           { day.isClosed
             ? 'Closed'
