@@ -2,9 +2,8 @@ import React from 'react';
 import RegularHoursOverview from './RegularHoursOverview'
 import ExceptionalHoursOverview from './ExceptionalHoursOverview'
 
-const Overview = ({ name, regularHours, exceptionalHours }) => (
+const Overview = ({ regularHours, exceptionalHours }) => (
     <React.Fragment>
-        <h1>{name}</h1>
         <h2>Regular hours</h2>
         <RegularHoursOverview regularHours={regularHours} />
 
