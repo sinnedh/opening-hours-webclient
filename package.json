@@ -10,6 +10,7 @@
     "react": "^16.2.0",
     "react-apollo": "^2.0.4",
     "react-dom": "^16.2.0",
+    "react-router": "^4.2.0",
     "react-scripts": "1.1.0",
     "semantic-ui-css": "^2.2.14",
     "semantic-ui-react": "^0.78.2"
