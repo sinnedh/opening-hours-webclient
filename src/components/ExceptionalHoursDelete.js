@@ -2,24 +2,11 @@ import React from 'react';
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 import { Button } from 'semantic-ui-react';
-
-const fetchExceptionalHoursQuery = gql`
-query {
-  allExceptionalHourses(filter: {
-    venue: {id: "cjcq6xxe1bmg40149mxjjpgmt"},
-  }) {
-    id
-    comment
-    isClosed
-    open
-    close
-  }
-}`;
+import { fetchExceptionalHoursQuery } from '../queries';
 
 class ExceptionalHoursDelete extends React.Component {
 
   handleClick = () => {
-
     this.props.mutate(
       {
         variables: {

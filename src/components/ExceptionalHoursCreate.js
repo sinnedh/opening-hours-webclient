@@ -3,20 +3,7 @@ import gql from 'graphql-tag';
 import { parse } from 'date-fns';
 import { graphql } from 'react-apollo';
 import { Checkbox, Input, Form } from 'semantic-ui-react';
-
-
-const fetchExceptionalHoursQuery = gql`
-query {
-  allExceptionalHourses(filter: {
-    venue: {id: "cjcq6xxe1bmg40149mxjjpgmt"},
-  }) {
-    id
-    comment
-    isClosed
-    open
-    close
-  }
-}`;
+import { fetchExceptionalHoursQuery } from '../queries';
 
 class ExceptionalHoursCreate extends React.Component {
   state = { date: '2018-02-07', isClosed: false, openAt: '10:00', closeAt: '19:00', comment: '' }

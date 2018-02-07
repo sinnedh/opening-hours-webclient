@@ -1,10 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
-import gql from 'graphql-tag';
 import { Container, Menu } from 'semantic-ui-react';
 import { graphql } from 'react-apollo';
 import RegularHoursOverview from './components/RegularHoursOverview';
 import ExceptionalHoursOverview from './components/ExceptionalHoursOverview';
+import { fetchInitialDataQuery } from './queries';
 import 'semantic-ui-css/semantic.min.css';
 
 const App = ({ data }) => (
@@ -42,34 +42,9 @@ const App = ({ data }) => (
             </Container>
         </React.Fragment>
     </Router>
-)
-
-const query = gql`
-query {
-  Venue(id: "cjcq6xxe1bmg40149mxjjpgmt") {
-    name
-  }
-  allRegularHourses(filter: {
-    venue: {id: "cjcq6xxe1bmg40149mxjjpgmt"}
-  }) {
-    id
-    weekday
-    isClosed
-    openTime
-    closeTime
-  }
-  allExceptionalHourses(filter: {
-    venue: {id: "cjcq6xxe1bmg40149mxjjpgmt"},
-  }) {
-    id
-    comment
-    isClosed
-    open
-    close
-  }
-}`
+);
 
 export default graphql(
-    query,
+    fetchInitialDataQuery,
     { options: { notifyOnNetworkStatusChange: true, } }
 )(App);
