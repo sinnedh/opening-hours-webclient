@@ -38,4 +38,33 @@ query {
   }
 }`;
 
-export { fetchExceptionalHoursQuery, fetchInitialDataQuery };
+const isNowOpenQuery = gql`
+query {
+  now {
+    weekday
+    isOpen
+  }
+  allRegularHourses(filter: {
+    venue: {id: "cjcq6xxe1bmg40149mxjjpgmt"}
+    weekday: Wednesday
+  }) {
+    id
+    weekday
+    isClosed
+    openTime
+    closeTime
+  }
+  allExceptionalHourses(filter: {
+    venue: {id: "cjcq6xxe1bmg40149mxjjpgmt"}
+    open_gt: "2018-02-07T00:00:00"
+    open_lt: "2018-02-08T00:00:00"
+  }) {
+    id
+    comment
+    isClosed
+    open
+    close
+  }
+}`;
+
+export { isNowOpenQuery, fetchExceptionalHoursQuery, fetchInitialDataQuery };

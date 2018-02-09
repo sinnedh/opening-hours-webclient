@@ -1,16 +1,41 @@
 import React from 'react';
 import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
-import { Container, Menu } from 'semantic-ui-react';
+import { Container, Icon, Menu } from 'semantic-ui-react';
 import { graphql } from 'react-apollo';
 import RegularHoursOverview from './components/RegularHoursOverview';
 import ExceptionalHoursOverview from './components/ExceptionalHoursOverview';
 import { fetchInitialDataQuery } from './queries';
 import 'semantic-ui-css/semantic.min.css';
 
+import { isNowOpenQuery } from './queries';
+import { isNowOpen } from './datetimeUtils';
+
+const IsNowOpen = ({ data }) => {
+  if(data.allRegularHourses && data.allExceptionalHourses) {
+    const now = new Date()
+    return isNowOpen(now, data.allRegularHourses, data.allExceptionalHourses)
+      ? <Icon color="green" name="wait" size="large" />
+      : <Icon color="red" name="wait" size="large" />
+  }
+
+  return <span />
+}
+
+const IsNowOpenContainer = graphql(
+    isNowOpenQuery,
+    { options: { notifyOnNetworkStatusChange: true, } }
+)(IsNowOpen);
+
+
+
 const App = ({ data }) => (
     <Router>
         <React.Fragment>
             <Menu inverted fixed="top">
+                <Menu.Item>
+                  <IsNowOpenContainer />
+                </Menu.Item>
+
                 { !data.loading && data.Venue && <Menu.Item>{data.Venue.name}</Menu.Item> }
 
                 <Menu.Item
