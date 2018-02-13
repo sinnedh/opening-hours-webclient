@@ -8,7 +8,10 @@ import { fetchInitialDataQuery } from './queries';
 import 'semantic-ui-css/semantic.min.css';
 
 
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 // TODO
 // + extract component
 // + implement isCloses handling
